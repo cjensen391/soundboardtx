@@ -1,8 +1,9 @@
 import os
 import pygame
+import glob
 
 pygame.mixer.init(frequency=44100, size=-16, channels=2, buffer=512)
-txsound = ''
+txsound = 'tx.wav'
 
 channel0 = pygame.mixer.Channel(0)
 channel1 = pygame.mixer.Channel(1)
@@ -12,10 +13,13 @@ path = os.getcwd()
 
 def playSound(sound):
     channel1.play(pygame.mixer.Sound(path +'/sounds/'+ sound))
-#channel0.play(pygame.mixer.Sound('sounds/'+ txsound))
+    channel0.play(pygame.mixer.Sound(path + '/sounds/' + txsound))
 
-##def countSounds():
-#    count=0
-#    for path in os.listdir(path + '/sounds/'):
-#        if os.path.isfile(os.path.join())
+def countSounds():
+    wav_counter = len(glob.glob1(path + '/sounds/', '*.wav'))
+    print(wav_counter)
+    return wav_counter
+
+def qtyRowCol(numofsounds):
+    return()
 
