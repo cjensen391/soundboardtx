@@ -16,10 +16,12 @@ def playSound(sound):
     channel0.play(pygame.mixer.Sound(path + '/sounds/' + txsound))
 
 def countSounds():
-    wav_counter = len(glob.glob1(path + '/sounds/', '*.wav'))
+    wav_counter = len(glob.glob1(path + '/sounds/', '*.wav')) - 1 #tx_tone
+    mp3_counter = len(glob.glob1(path + '/sounds/', '*.mp3'))
     print(wav_counter)
+    print (mp3_counter)
     return wav_counter
 
 def qtyRowCol(numofsounds):
-    return()
+    return(10)
 
