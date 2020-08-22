@@ -1,12 +1,12 @@
 import PySimpleGUI as sg
 import soundboardplay
 
-MAX_ROWS = MAX_COL = 10
+MAX_ROWS = MAX_COL = soundboardplay.countSounds()
 
-layout = [[sg.Button('+', size=(4, 2), key=(i,j), pad=(0,0)) for j in range(MAX_COL)] for i in range(MAX_ROWS)]
+layout = [[sg.Button('+', size=(13, 10), key=(i,j), pad=(0,0)) for j in range(MAX_COL)] for i in range(MAX_ROWS)]
 
 window = sg.Window('Soundboard.tx', layout)
-soundboardplay.countSounds()
+soundboardplay.namesOfFiles()
 while True:                             # The Event Loop
     event, values = window.read()
     print(event, values)
