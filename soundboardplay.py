@@ -25,17 +25,14 @@ def countSounds():
 
 
 def qtyRowCol():
-#    if countSounds() == 1:
-#        return (1,1)
-#    elif countSounds() % 2 == 0:
-#        rows=columns=countSounds()/2
-#        return(rows,columns)
-#    elif countSounds() % 2 != 0 && countSounds() != 0:
-
-#    beginning of row and column calculation
-
-    return(countSounds())
-
+    if countSounds() >= 9:
+        columns = countSounds() % 9
+        rows = abs(countSounds() / 9)
+        return (rows,columns)
+    if countSounds() <= 9:
+        rows = 1
+        columns = countSounds()
+        return(rows,columns)
 
 def namesOfFiles():
     # Gets the names of all the mp3 and wav files and returns list
