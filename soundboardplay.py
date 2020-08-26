@@ -13,7 +13,7 @@ path = os.getcwd()
 def playSound(sound):
     #plays sound on right ch and tx activation sound on left channel
     channel1.play(pygame.mixer.Sound(path +'/sounds/'+ sound))
-    channel0.play(pygame.mixer.Sound(path + '/sounds/' + txsound),maxtime=20)
+    channel0.play(pygame.mixer.Sound(path + '/sounds/' + txsound),maxtime=1000)
 
 def countSounds():
     #Counts Files in /sounds/ folder. MP3 Play not implmented
@@ -25,7 +25,15 @@ def countSounds():
 
 
 def qtyRowCol():
-    # beginning of row and column calculation
+#    if countSounds() == 1:
+#        return (1,1)
+#    elif countSounds() % 2 == 0:
+#        rows=columns=countSounds()/2
+#        return(rows,columns)
+#    elif countSounds() % 2 != 0 && countSounds() != 0:
+
+#    beginning of row and column calculation
+
     return(countSounds())
 
 
