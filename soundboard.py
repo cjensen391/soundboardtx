@@ -4,6 +4,7 @@ import soundboardplay
 #row/column declaration
 MAX_ROWS, MAX_COL = soundboardplay.qtyRowCol()
 
+
 #Button Layout for PysimpleGUI
 layout = [[sg.Button('+', size=(13, 10), key=(i,j), pad=(0,0)) for j in range(MAX_COL)] for i in range(MAX_ROWS)]
 window = sg.Window('Soundboard.tx', layout)
@@ -18,8 +19,10 @@ while True:
         break
     if event in dicOfFiles.keys():
         soundboardplay.playSound(dicOfFiles[event])
+        #print(str(soundboardplay.lengthOfSound(dicOfFiles[event])))
     else:
         print('no file assigned')
+
 window.close()
         
 
