@@ -1,3 +1,4 @@
+import PySimpleGUIWeb as sg
 import PySimpleGUI as sg
 import soundboardplay
 
@@ -11,10 +12,11 @@ window = sg.Window('Soundboard.tx', layout)
 
 #creates dictionary with list of files and positions from zip object
 dicOfFiles = dict(soundboardplay.assignFiles(MAX_COL))
+
 while True:
     # The Event Loop
     event, values = window.read()
-    print(event, values)
+    #print(event, values)
     if event == sg.WIN_CLOSED or event == 'Exit':
         break
     if event in dicOfFiles.keys():

@@ -12,20 +12,17 @@ channel0.set_volume(1.0,0.002)
 channel1.set_volume(0.002,1.0)
 path = os.getcwd()
 
-def lengthOfSound(sound):
-    return pygame.mixer.Sound.get_length(path + '/sounds/'+ sound)
 
 def playSound(sound):
     #plays sound on right ch and tx activation sound on left channel
+    soundinit = pygame.mixer.Sound(path + '/sounds/' + sound)
     channel1.play(pygame.mixer.Sound(path +'/sounds/'+ sound))
-    channel0.play(pygame.mixer.Sound(path + '/sounds/' + txsound),maxtime=1000)
+    channel0.play(pygame.mixer.Sound(path + '/sounds/' + txsound),maxtime= math.ceil(soundinit.get_length()) * 1000)
 
 def countSounds():
     #Counts Files in /sounds/ folder. MP3 Play not implmented
     wav_counter = len(glob.glob1(path + '/sounds/', '*.wav')) - 1 #tx_tone
     mp3_counter = len(glob.glob1(path + '/sounds/', '*.mp3'))
-    print(wav_counter)
-    print (mp3_counter)
     return wav_counter
 
 
