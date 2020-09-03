@@ -8,7 +8,7 @@ pygame.mixer.init(frequency=44100, size=-16, channels=2, buffer=512)
 txsound = 'tx.wav'
 channel0 = pygame.mixer.Channel(0)
 channel1 = pygame.mixer.Channel(1)
-channel0.set_volume(1.0,0.002)
+channel0.set_volume(0.0,0.002)
 channel1.set_volume(0.002,1.0)
 path = os.getcwd()
 
@@ -17,7 +17,7 @@ def playSound(sound):
     #plays sound on right ch and tx activation sound on left channel
     soundinit = pygame.mixer.Sound(path + '/sounds/' + sound)
     channel1.play(pygame.mixer.Sound(path +'/sounds/'+ sound))
-    channel0.play(pygame.mixer.Sound(path + '/sounds/' + txsound),maxtime= math.ceil(soundinit.get_length()) * 1000)
+    #channel0.play(pygame.mixer.Sound(path + '/sounds/' + txsound),maxtime= math.ceil(soundinit.get_length()) * 1000)
 
 def countSounds():
     #Counts Files in /sounds/ folder. MP3 Play not implmented
