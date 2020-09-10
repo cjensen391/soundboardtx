@@ -2,27 +2,40 @@ import os
 import pygame
 import glob
 import math
+#import audiolab, scipy
 
-#pygame initilization and setting levels/aliases
-pygame.mixer.init(frequency=44100, size=-16, channels=2, buffer=512)
-txsound = 'tx.wav'
-channel0 = pygame.mixer.Channel(0)
-channel1 = pygame.mixer.Channel(1)
-channel0.set_volume(0.0,0.002)
-channel1.set_volume(0.002,1.0)
 path = os.getcwd()
 
 
+#pygame initilization and setting levels/aliases
+pygame.mixer.init(frequency=44100, size=-16, channels=1, buffer=512)
+txsoundp = 'tx.wav'
+channel0 = pygame.mixer.Channel(0)
+channel1 = pygame.mixer.Channel(1)
+channel0.set_volume(1.0,0.001)
+channel1.set_volume(0.001,1.0)
+
+
+
+
+
 def playSound(sound):
-    #plays sound on right ch and tx activation sound on left channel
-    soundinit = pygame.mixer.Sound(path + '/sounds/' + sound)
-    channel1.play(pygame.mixer.Sound(path +'/sounds/'+ sound))
-    #channel0.play(pygame.mixer.Sound(path + '/sounds/' + txsound),maxtime= math.ceil(soundinit.get_length()) * 1000)
+   # a , fs, enc = audiolab.wavread(path+'/sounds/'+sound)
+   # b, fs, enc = audiolab.wavread(path+'/sounds/'+txsound)
+   # c = scipy.vstack((a,b))
+   # audiolab.wavwrite(c,path+'/sounds/'+sound)
+    soundobj = pygame.mixer.Sound(path + '/sounds/' + sound)
+    txsound = pygame.mixer.Sound(path + '/sounds/' + txsoundp)
+    soundobj.set_volume(1.0)
+    txsound.set_volume(1.0)
+    txsound.play(maxtime=math.ceil(soundobj.get_length()))
+    soundobj.play()
+
 
 def countSounds():
     #Counts Files in /sounds/ folder. MP3 Play not implmented
     wav_counter = len(glob.glob1(path + '/sounds/', '*.wav')) - 1 #tx_tone
-    mp3_counter = len(glob.glob1(path + '/sounds/', '*.mp3'))
+    #mp3_counter = len(glob.glob1(path + '/sounds/', '*.mp3'))
     return wav_counter
 
 
@@ -59,8 +72,6 @@ def makelistofpositions(numofrows):
 
 def assignFiles(numofrows):
     #assigns files to positons
-    file_positions = {}
-    names = namesOfFiles()
     position_map = zip(makelistofpositions(numofrows),namesOfFiles())
     return(position_map)
 

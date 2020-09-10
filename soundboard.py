@@ -2,15 +2,15 @@ import PySimpleGUI as sg
 import soundboardplay
 
 #row/column declaration
-MAX_ROWS, MAX_COL = soundboardplay.qtyRowCol()
+ROWS,COL = soundboardplay.qtyRowCol()
 
 
 #Button Layout for PysimpleGUI
-layout = [[sg.Button('+', size=(13, 10), key=(i,j), pad=(0,0)) for j in range(MAX_COL)] for i in range(MAX_ROWS)]
+layout = [[sg.Button('+', size=(13, 10), key=(i,j), pad=(0,0)) for j in range(COL)] for i in range(ROWS)]
 window = sg.Window('Soundboard.tx', layout)
 
 #creates dictionary with list of files and positions from zip object
-dicOfFiles = dict(soundboardplay.assignFiles(MAX_COL))
+dicOfFiles = dict(soundboardplay.assignFiles(COL))
 
 while True:
     # The Event Loop
@@ -25,11 +25,3 @@ while True:
         print('no file assigned')
 
 window.close()
-        
-
-
-
-
-
-
-
